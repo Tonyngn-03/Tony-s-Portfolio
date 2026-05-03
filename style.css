@@ -1,0 +1,81 @@
+/* ==============================================
+   Global Base
+   ============================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F2F1EC;
+    color: #111111;
+}
+
+/* ==============================================
+   Text selection — neutral to match light palette
+   ============================================== */
+::selection {
+    background: #111111;
+    color: #F2F1EC;
+}
+
+/* ==============================================
+   Contact: outlined text stroke
+   ============================================== */
+.text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #F2F1EC;
+}
+
+.text-outline:hover {
+    color: #F2F1EC;
+    -webkit-text-stroke: 0px #F2F1EC;
+    transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+}
+
+/* ==============================================
+   Work grid: controlled stagger — no giant overlaps
+   ============================================== */
+@media (min-width: 768px) {
+    .work-offset-top {
+        margin-top: 6rem; /* 96px — controlled visual stagger */
+    }
+    .work-offset-pull {
+        margin-top: -6rem; /* pulls the second row up cleanly */
+    }
+}
+
+/* ==============================================
+   Hover: subtle image reveal (no mix-blend issues)
+   ============================================== */
+.img-reveal {
+    filter: grayscale(100%);
+    transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-reveal {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* ==============================================
+   Active feedback on interactive items
+   ============================================== */
+.work-card:active {
+    transform: scale(0.99);
+}
+
+/* ==============================================
+   Custom scrollbar
+   ============================================== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #F2F1EC;
+}
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
