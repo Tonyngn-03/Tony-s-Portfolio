@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony | Video Editor & Multimedia Specialist</title>
-    <meta name="description" content="Tony — Multimedia student and video editor based in Vietnam. Cinematic storytelling, motion design, and bold visual experiences.">
+    <meta name="description"
+        content="Tony — Multimedia student and video editor based in Vietnam. Cinematic storytelling, motion design, and bold visual experiences.">
     <meta property="og:title" content="Tony | Video Editor & Multimedia Specialist">
-    <meta property="og:description" content="Cinematic storytelling meets minimalist design. Explore Tony's showreel and selected works.">
+    <meta property="og:description"
+        content="Cinematic storytelling meets minimalist design. Explore Tony's showreel and selected works.">
     <meta property="og:type" content="website">
 
     <!-- Tailwind CDN -->
@@ -27,254 +29,432 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/Picture/favicon.ico">
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-[#0e0c0a]">
 
     <!-- =============================================
-         HERO SECTION
+         LOADING SCREEN
          ============================================= -->
-    <header id="hero-section"
-        class="relative min-h-[100dvh] w-full overflow-hidden bg-[#F2F1EC] text-[#111111] flex flex-col pt-24 pb-8">
-
-        <!-- Fixed Nav — mix-blend-difference for auto color flip -->
-        <nav id="hero-nav"
-            class="fixed top-6 left-0 w-full px-8 md:px-12 flex justify-between items-center text-[11px] md:text-xs font-bold tracking-widest uppercase z-[100] font-sans mix-blend-difference text-white pointer-events-auto">
-            <div class="flex gap-6 md:gap-14">
-                <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
-                    <span>VIỆT NAM, VN</span>
-                </div>
-                <span class="hidden md:inline" id="nav-time">GMT+7</span>
-                <span class="hidden lg:inline">14.0583° N, 108.2772° E</span>
-            </div>
-            <ul class="flex gap-6 md:gap-10 list-none m-0 p-0">
-                <li><a href="#about" class="hover:opacity-50 transition-opacity duration-200">ABOUT</a></li>
-                <li><a href="#work" class="hover:opacity-50 transition-opacity duration-200">WORK</a></li>
-                <li><a href="#contact" class="hover:opacity-50 transition-opacity duration-200">CONTACT</a></li>
-            </ul>
-        </nav>
-
-        <!-- TONY'SPACE — main display wordmark -->
-        <div class="w-full px-4 text-center z-10 shrink-0 pt-8">
-            <h1
-                class="font-display text-[16vw] md:text-[14.5vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#111111] m-0">
-                TONY'SPACE
-            </h1>
+    <div id="loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto">
+        <!-- Element 1: "Portfolio" Label (Top-Left) -->
+        <div id="loader-label"
+            class="absolute top-8 left-8 md:top-12 md:left-12 text-[10px] md:text-xs opacity-50 uppercase tracking-[0.3em] font-sans font-bold"
+            style="transform: translateY(-20px);">
+            PORTFOLIO
         </div>
 
-        <!-- A VISUAL / DESIGNER flanking the video placeholder -->
-        <div class="flex-1 flex flex-col justify-center w-full z-10 -mt-10 md:-mt-20">
-            <div class="flex items-center justify-between w-full px-8 md:px-16 relative">
-                <h2
-                    class="font-display text-[8vw] md:text-[6vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#111111]">
-                    A VISUAL
-                </h2>
-
-                <!-- Ghost placeholder for GSAP video animation -->
-                <div id="video-placeholder"
-                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] md:w-[35%] max-w-[450px] flex flex-col z-10 opacity-0 pointer-events-none">
-                    <div
-                        class="flex justify-between text-[10px] md:text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest">
-                        <span>MOTION DESIGN</span>
-                        <span>2026</span>
-                    </div>
-                    <div class="w-full aspect-[4/3]"></div>
-                </div>
-
-                <h2
-                    class="font-display text-[8vw] md:text-[6vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#111111]">
-                    DESIGNER
-                </h2>
+        <!-- Element 2: Rotating Words (Center) -->
+        <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div id="loader-words-container" class="relative flex items-center justify-center w-full h-full">
+                <!-- Spans inserted via JS -->
             </div>
         </div>
 
-        <!-- Scroll cue -->
-        <div class="w-full text-center text-[10px] font-bold uppercase tracking-[0.3em] z-20 font-sans shrink-0 mt-8 text-[#111111]/50">
-            SCROLL
+        <!-- Element 3: Counter (Bottom-Right) -->
+        <div id="loader-counter"
+            class="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-6xl md:text-8xl lg:text-9xl font-display tabular-nums opacity-0 leading-none"
+            style="transform: translateY(20px);">
+            000
         </div>
-    </header>
 
-    <!-- =============================================
-         VIDEO FULL-SCREEN DESTINATION
-         ============================================= -->
-    <section id="video-destination"
-        class="w-full min-h-screen bg-[#F2F1EC] relative flex items-center justify-center overflow-hidden">
-    </section>
-
-    <!-- Floating animated video wrapper (positioned by GSAP) -->
-    <div id="animating-video-wrapper" class="absolute z-50 flex flex-col origin-top-left" style="pointer-events: none;">
-        <div id="animating-labels"
-            class="flex justify-between text-[10px] md:text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest w-full">
-            <span>MOTION DESIGN</span>
-            <span>2026</span>
-        </div>
-        <div id="animating-video-inner" class="w-full flex-1 bg-[#111111] overflow-hidden rounded-sm relative">
-            <video class="absolute inset-0 w-full h-full object-cover" src="Assets/Video/Tony's Showreel 101.mp4"
-                autoplay muted loop playsinline></video>
+        <!-- Element 4: Progress Bar (Bottom Edge) -->
+        <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-[var(--color-muted-faint)]/20 w-full">
+            <div id="loader-progress" class="h-full w-full origin-left scale-x-0"
+                style="background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%); box-shadow: 0 0 8px rgba(137, 170, 204, 0.35);">
+            </div>
         </div>
     </div>
 
-    <!-- =============================================
-         ABOUT SECTION
+    <!-- MAIN CONTENT WRAPPER -->
+    <div id="main-content" class="opacity-0">
+
+        <!-- =============================================
+         HERO SECTION
          ============================================= -->
-    <section id="about" class="py-28 px-8 md:px-16 w-full border-t border-[#111111]/10 bg-[#F2F1EC] text-[#111111]">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <header id="hero-section"
+            class="relative min-h-[100dvh] w-full overflow-hidden bg-[#F2F1EC] text-[#0e0c0a] flex flex-col pt-24 pb-8">
 
-            <!-- Left: Text content -->
-            <div class="md:col-span-5 pt-2">
-                <div class="text-[10px] font-bold text-[#111111]/40 mb-8 uppercase tracking-[0.25em]">
-                    (01) About
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold leading-[1.15] mb-8 tracking-tight">
-                    Turning raw footage into stories people feel.
-                </h2>
-                <p class="text-[#111111]/65 text-base md:text-lg mb-10 leading-[1.8] max-w-[42ch]">
-                    I'm Tony — a Multimedia student and video editor from Vietnam. I combine cinematic
-                    composition with sharp motion design to produce work that stands out.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-4 py-2 border border-[#111111]/20 text-[11px] font-bold tracking-wider uppercase hover:bg-[#111111] hover:text-[#F2F1EC] transition-colors duration-200 cursor-default">Premiere Pro</span>
-                    <span class="px-4 py-2 border border-[#111111]/20 text-[11px] font-bold tracking-wider uppercase hover:bg-[#111111] hover:text-[#F2F1EC] transition-colors duration-200 cursor-default">After Effects</span>
-                    <span class="px-4 py-2 border border-[#111111]/20 text-[11px] font-bold tracking-wider uppercase hover:bg-[#111111] hover:text-[#F2F1EC] transition-colors duration-200 cursor-default">Motion Design</span>
-                    <span class="px-4 py-2 border border-[#111111]/20 text-[11px] font-bold tracking-wider uppercase hover:bg-[#111111] hover:text-[#F2F1EC] transition-colors duration-200 cursor-default">Storytelling</span>
-                </div>
-            </div>
-
-            <!-- Right: Portrait image — no mix-blend-multiply (invisible on cream bg) -->
-            <div class="md:col-span-7 relative w-full aspect-[3/2] md:aspect-[4/3] bg-[#ddd] overflow-hidden">
-                <img src="https://picsum.photos/seed/tonyportrait/1200/900"
-                    class="img-reveal w-full h-full object-cover"
-                    alt="Tony — Multimedia student and video editor, Vietnam">
-            </div>
-        </div>
-    </section>
-
-    <!-- =============================================
-         WORK / ARCHIVE SECTION
-         ============================================= -->
-    <section id="work" class="py-28 px-8 md:px-16 w-full border-t border-[#111111]/10 bg-[#F2F1EC] text-[#111111]">
-        <div class="max-w-[1400px] mx-auto">
-
-            <!-- Section header -->
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                <div>
-                    <div class="text-[10px] font-bold text-[#111111]/40 mb-5 uppercase tracking-[0.25em]">
-                        (02) Selected Works
+            <!-- Fixed Nav — mix-blend-difference for auto color flip -->
+            <nav id="hero-nav"
+                class="fixed top-6 left-0 w-full px-8 md:px-12 flex justify-between items-center text-[11px] md:text-xs font-bold tracking-widest uppercase z-[100] font-sans mix-blend-difference text-white pointer-events-auto">
+                <div class="flex gap-6 md:gap-14">
+                    <div class="flex items-center gap-2">
+                        <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                        <div class="reveal-wrapper">
+                            <div class="reveal-item">VIỆT NAM, VN</div>
+                        </div>
                     </div>
-                    <h2
-                        class="font-display text-[10vw] md:text-[7vw] leading-[0.85] tracking-tight uppercase transform scale-y-[1.15] text-[#111111] m-0">
-                        ARCHIVE
+                    <div class="reveal-wrapper">
+                        <div class="reveal-item">
+                            <span class="hidden md:inline" id="nav-time">GMT+7</span>
+                        </div>
+                    </div>
+                    <div class="reveal-wrapper">
+                        <div class="reveal-item">
+                            <span class="hidden lg:inline">14.0583° N, 108.2772° E</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="flex gap-6 md:gap-10 list-none m-0 p-0">
+                    <li><div class="reveal-wrapper"><a href="#video-destination"
+                            class="reveal-item hover:opacity-50 transition-opacity duration-500">SHOWREEL</a></div></li>
+                    <li><div class="reveal-wrapper"><a href="#break"
+                            class="reveal-item hover:opacity-50 transition-opacity duration-500">BREAK</a></div></li>
+                    <li><div class="reveal-wrapper"><a href="#about"
+                            class="reveal-item hover:opacity-50 transition-opacity duration-500">ABOUT</a></div></li>
+                    <li><div class="reveal-wrapper"><a href="#work"
+                            class="reveal-item hover:opacity-50 transition-opacity duration-500">WORK</a></div></li>
+                    <li><div class="reveal-wrapper"><a href="#contact"
+                            class="reveal-item hover:opacity-50 transition-opacity duration-500">CONTACT</a></div></li>
+                </ul>
+            </nav>
+
+            <!-- Status Badge (Absolute to Header) -->
+            <div class="absolute top-12 right-8 md:right-12 z-20 hidden sm:block">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <div class="reveal-wrapper">
+                        <div class="reveal-item">AVAILABLE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TONY'SPACE — main display wordmark -->
+            <div class="w-full px-4 text-center z-10 shrink-0 pt-8">
+                <h1 id="hero-title"
+                    class="font-display text-[16vw] md:text-[14.5vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#0e0c0a] m-0">
+                    TONY'SPACE
+                </h1>
+            </div>
+
+            <!-- A VISUAL / DESIGNER flanking the video placeholder -->
+            <div class="flex-1 flex flex-col justify-center w-full z-10 -mt-10 md:-mt-20">
+                <div class="flex items-center justify-between w-full px-8 md:px-16 relative">
+                    <h2 id="text-left"
+                        class="font-display text-[8vw] md:text-[6vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#0e0c0a]">
+                        A VISUAL
+                    </h2>
+
+                    <!-- Ghost placeholder for GSAP video animation -->
+                    <div id="video-placeholder"
+                        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] md:w-[35%] max-w-[450px] flex flex-col z-10 opacity-0 pointer-events-none">
+                        <div
+                            class="flex justify-between text-[10px] md:text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest">
+                            <span>MOTION DESIGN</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="w-full aspect-[4/3]"></div>
+                    </div>
+
+                    <h2 id="text-right"
+                        class="font-display text-[8vw] md:text-[6vw] leading-[0.8] tracking-tight uppercase transform scale-y-[1.15] text-[#0e0c0a]">
+                        DESIGNER
                     </h2>
                 </div>
-                <div class="text-[10px] text-[#111111]/40 font-bold uppercase tracking-[0.25em] pb-1">
-                    04 Projects
+            </div>
+
+            <!-- Scroll cue -->
+            <div id="hero-scroll-cue"
+                class="w-full text-center text-[10px] font-bold uppercase tracking-[0.3em] z-20 font-sans shrink-0 mt-8 text-[#9c9891]">
+                SCROLL
+            </div>
+        </header>
+
+        <!-- =============================================
+         VIDEO FULL-SCREEN DESTINATION
+         ============================================= -->
+        <section id="video-destination"
+            class="w-full min-h-screen bg-[#F2F1EC] relative flex items-center justify-center overflow-hidden">
+        </section>
+
+        <!-- Floating animated video wrapper (positioned by GSAP) -->
+        <div id="animating-video-wrapper" class="absolute z-50 flex flex-col origin-top-left"
+            style="pointer-events: none;">
+            <div id="animating-labels"
+                class="flex justify-between text-[10px] md:text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest w-full">
+                <span>MOTION DESIGN</span>
+                <span>2026</span>
+            </div>
+            <div id="animating-video-inner" class="w-full flex-1 bg-[#0e0c0a] overflow-hidden relative">
+                <video id="hero-video" class="absolute inset-0 w-full h-full object-cover"
+                    src="Assets/Video/Tony's Showreel 101 Optimized.mp4" muted loop playsinline></video>
+                <!-- Mute/Unmute button — fades in on hover -->
+                <button id="mute-btn" aria-label="Toggle sound"
+                    style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.25s ease;pointer-events:auto;background:rgba(242,241,236,0.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(242,241,236,0.3);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                    <!-- Unmuted icon (speaker with waves) -->
+                    <svg id="icon-sound-on" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24" fill="none" stroke="#F2F1EC" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <!-- Muted icon (speaker with X) — hidden by default -->
+                    <svg id="icon-sound-off" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24" fill="none" stroke="#F2F1EC" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" style="display:none;">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- =============================================
+         BREAK SECTION
+         ============================================= -->
+        <section id="break"
+            class="w-full min-h-screen break-section relative flex items-center justify-center overflow-hidden px-6 md:px-20 py-24 z-10">
+            <div class="relative w-full flex flex-col items-center gap-6">
+
+                <!-- Top Label -->
+                <div
+                    class="text-[9px] md:text-[10px] font-sans font-bold uppercase tracking-[0.25em] opacity-50 text-[var(--color-cream)] text-center">
+                    Inspirational Quote
+                </div>
+
+                <!-- Quote Block -->
+                <div class="flex flex-col items-center leading-none">
+                    <span
+                        class="font-display text-[14vw] md:text-[11vw] lg:text-[9vw] uppercase tracking-tight transform scale-y-[1.1] text-[var(--color-cream)] whitespace-nowrap">NOTHING</span>
+                    <span
+                        class="font-display text-[14vw] md:text-[11vw] lg:text-[9vw] uppercase tracking-tight transform scale-y-[1.1] text-[var(--color-cream)] whitespace-nowrap">IS</span>
+                    <!-- Hover invert on POSSIBLE -->
+                    <span id="break-possible"
+                        class="break-possible font-display text-[14vw] md:text-[11vw] lg:text-[9vw] uppercase tracking-tight transform scale-y-[1.1] whitespace-nowrap cursor-pointer select-none px-4">&ldquo;POSSIBLE&rdquo;</span>
+                </div>
+
+                <!-- Bottom Attribution -->
+                <div
+                    class="text-[9px] md:text-[10px] font-sans font-bold uppercase tracking-[0.25em] opacity-50 text-[var(--color-cream)] text-center">
+                    &mdash; Tony
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =============================================
+         ABOUT SECTION
+         ============================================= -->
+        <section id="about" class="py-36 px-8 md:px-16 w-full bg-[#F2F1EC] text-[#0e0c0a] overflow-hidden">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 items-center">
+
+                    <!-- Left Column: Content -->
+                    <div class="md:col-span-7">
+                        <div class="text-[10px] font-bold text-[#b0ada7] mb-10 uppercase tracking-[0.25em]">
+                            (01) About
+                        </div>
+
+                        <div class="max-w-[640px]">
+                            <h2
+                                class="font-display text-4xl md:text-5xl lg:text-7xl leading-[1.05] mb-8 tracking-tight uppercase transform scale-y-[1.05]">
+                                I create <span class="italic font-serif">visual stories</span> that resonate.
+                            </h2>
+
+                            <p class="text-[#0e0c0a]/70 text-lg md:text-xl mb-12 leading-[1.6] max-w-[65ch]">
+                                I'm Tony, a dynamic and results-driven Video Creative and Motion Designer with a proven
+                                track record of producing high-converting visual content. Skilled in the full production
+                                lifecycle from VFX and Motion Graphics to Photography and Editing to enhance brand
+                                engagement and reach multi-million audiences.
+                            </p>
+
+                            <div class="space-y-5 border-t border-[#dedad4] pt-10">
+                                <div class="flex justify-between items-center group cursor-default">
+                                    <span
+                                        class="text-[11px] font-bold uppercase tracking-widest text-[#b0ada7]">Expertise</span>
+                                    <span class="text-sm font-medium">Video Editing / Motion Design / VFX</span>
+                                </div>
+                                <div class="flex justify-between items-center group cursor-default">
+                                    <span
+                                        class="text-[11px] font-bold uppercase tracking-widest text-[#b0ada7]">Tools</span>
+                                    <span class="text-sm font-medium">Adobe Suite / Resolve / Blender / CapCut</span>
+                                </div>
+                                <div class="flex justify-between items-center group cursor-default">
+                                    <span
+                                        class="text-[11px] font-bold uppercase tracking-widest text-[#b0ada7]">Focus</span>
+                                    <span class="text-sm font-medium">Cinematic Narratives / Commercials</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Portrait -->
+                    <div class="md:col-span-5 relative group">
+                        <div class="relative aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+                            <img src="Assets/Picture/Tony Portrait.png" class="img-reveal w-full h-full object-cover"
+                                alt="Tony — Video Creative and Motion Designer">
+                        </div>
+                        <!-- Decorative element - subtle position -->
+                        <div class="absolute -top-6 -right-6 w-32 h-32 border border-[#dedad4] -z-10 hidden lg:block">
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Asymmetric 12-col grid — row 1: 8+4, row 2: 5+7 with controlled offsets -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12">
+        <!-- =============================================
+         WORK / ARCHIVE SECTION
+         ============================================= -->
+        <section id="work" class="py-28 px-8 md:px-16 w-full border-t border-[#dedad4] bg-[#F2F1EC] text-[#0e0c0a]">
+            <div class="max-w-[1400px] mx-auto">
 
-                <!-- 01 — wide card -->
-                <article class="work-card md:col-span-8 group cursor-pointer flex flex-col gap-3">
-                    <div class="w-full aspect-[16/9] bg-[#ccc] overflow-hidden relative">
-                        <img src="https://picsum.photos/seed/cyberpunk01/1600/900"
-                            class="img-reveal w-full h-full object-cover"
-                            alt="Cyberpunk Commercial — video editing project">
-                    </div>
-                    <div class="flex justify-between items-baseline pt-1">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold tracking-tight">Cyberpunk Commercial</h3>
-                            <p class="text-[#111111]/50 text-xs mt-1 uppercase tracking-wider">Video Editing · Color Grading</p>
+                <!-- Section header -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                    <div>
+                        <div class="text-[10px] font-bold text-[#b0ada7] mb-5 uppercase tracking-[0.25em]">
+                            (02) Selected Works
                         </div>
-                        <span class="font-sans font-bold text-[#111111]/20 text-sm tabular-nums">01</span>
+                        <h2
+                            class="font-display text-[10vw] md:text-[7vw] leading-[0.85] tracking-tight uppercase transform scale-y-[1.15] text-[#0e0c0a] m-0">
+                            ARCHIVE
+                        </h2>
                     </div>
-                </article>
+                    <div class="text-[10px] text-[#b0ada7] font-bold uppercase tracking-[0.25em] pb-1">
+                        04 Projects
+                    </div>
+                </div>
 
-                <!-- 02 — narrow tall card, offset down -->
-                <article class="work-card md:col-span-4 work-offset-top group cursor-pointer flex flex-col gap-3">
-                    <div class="w-full aspect-[3/4] bg-[#ccc] overflow-hidden relative">
-                        <img src="https://picsum.photos/seed/gaming02/800/1066"
-                            class="img-reveal w-full h-full object-cover"
-                            alt="Nostalgia Gaming mini-doc project">
-                    </div>
-                    <div class="flex justify-between items-baseline pt-1">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold tracking-tight">Nostalgia Gaming</h3>
-                            <p class="text-[#111111]/50 text-xs mt-1 uppercase tracking-wider">Documentary · Sound Design</p>
+                <!-- Asymmetric 12-col grid — row 1: 8+4, row 2: 5+7 with controlled offsets -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12">
+
+                    <!-- 01 — wide card -->
+                    <article id="adobe-card" class="work-card md:col-span-8 group cursor-pointer flex flex-col gap-3"
+                        data-video="Assets/Video/ADC TVC Optimized.mp4" data-title="Creative Exhibition Contest">
+                        <div class="w-full aspect-[16/9] bg-[#ccc] overflow-hidden relative">
+                            <img src="Assets/Picture/adobe.png" class="img-reveal w-full h-full object-cover"
+                                alt="Adobe Creative Exhibition — creative director project">
                         </div>
-                        <span class="font-sans font-bold text-[#111111]/20 text-sm tabular-nums">02</span>
-                    </div>
-                </article>
-
-                <!-- 03 — text-art card -->
-                <article class="work-card md:col-span-5 group cursor-pointer flex flex-col gap-3">
-                    <div class="w-full aspect-video bg-[#111111] overflow-hidden relative flex items-center justify-center text-[#F2F1EC]">
-                        <span class="font-display text-4xl md:text-5xl uppercase tracking-tight scale-y-[1.15] opacity-70 group-hover:opacity-100 group-hover:scale-[1.06] transition-all duration-700 ease-out select-none">KINETIC</span>
-                    </div>
-                    <div class="flex justify-between items-baseline pt-1">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold tracking-tight">Kinetic Typography</h3>
-                            <p class="text-[#111111]/50 text-xs mt-1 uppercase tracking-wider">Motion Graphics · After Effects</p>
+                        <div class="flex justify-between items-baseline pt-1">
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold tracking-tight">Creative Exhibition Contest</h3>
+                                <p class="text-[#9c9891] text-xs mt-1 uppercase tracking-wider">Creative Director · VFX
+                                    · Video Editing</p>
+                            </div>
+                            <span class="font-sans font-bold text-[#c2bfb9] text-sm tabular-nums">01</span>
                         </div>
-                        <span class="font-sans font-bold text-[#111111]/20 text-sm tabular-nums">03</span>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- 04 — wide card, pulled up to overlap gap cleanly -->
-                <article class="work-card md:col-span-7 work-offset-pull group cursor-pointer flex flex-col gap-3">
-                    <div class="w-full aspect-[4/3] bg-[#ccc] overflow-hidden relative">
-                        <img src="https://picsum.photos/seed/visualizer04/1400/1050"
-                            class="img-reveal w-full h-full object-cover"
-                            alt="Music Visualizer — VFX and 3D render project">
-                    </div>
-                    <div class="flex justify-between items-baseline pt-1">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold tracking-tight">Music Visualizer</h3>
-                            <p class="text-[#111111]/50 text-xs mt-1 uppercase tracking-wider">VFX · 3D Render</p>
+                    <!-- 02 — narrow tall card, offset down -->
+                    <article class="work-card md:col-span-4 work-offset-top group cursor-pointer flex flex-col gap-3">
+                        <div class="w-full aspect-[3/4] bg-[#ccc] overflow-hidden relative">
+                            <video id="motion-learning-video" class="img-reveal w-full h-full object-cover"
+                                src="Assets/Video/Motion learning.mp4" muted loop playsinline></video>
                         </div>
-                        <span class="font-sans font-bold text-[#111111]/20 text-sm tabular-nums">04</span>
-                    </div>
-                </article>
+                        <div class="flex justify-between items-baseline pt-1">
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold tracking-tight">Motion Learning</h3>
+                                <p class="text-[#9c9891] text-xs mt-1 uppercase tracking-wider">Experimental · Motion
+                                    Design</p>
+                            </div>
+                            <span class="font-sans font-bold text-[#c2bfb9] text-sm tabular-nums">02</span>
+                        </div>
+                    </article>
 
+                    <!-- 03 — text-art card -->
+                    <article id="short-film-card"
+                        class="work-card md:col-span-5 group cursor-pointer flex flex-col gap-3"
+                        data-video="Assets/Video/Short film HUE Optimized.mp4" data-title="Reverie Short Film">
+                        <div class="w-full aspect-video bg-[#ccc] overflow-hidden relative">
+                            <img src="Assets/Picture/Short film.png" class="img-reveal w-full h-full object-cover"
+                                alt="Short Film project — Cinematography and Directing">
+                        </div>
+                        <div class="flex justify-between items-baseline pt-1">
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold tracking-tight">Reverie Short Film</h3>
+                                <p class="text-[#9c9891] text-xs mt-1 uppercase tracking-wider">Director of Photography
+                                    · Film Director · Sound Designer</p>
+                            </div>
+                            <span class="font-sans font-bold text-[#c2bfb9] text-sm tabular-nums">03</span>
+                        </div>
+                    </article>
+
+                    <!-- 04 — wide card, pulled up to overlap gap cleanly -->
+                    <a href="https://drive.google.com/drive/folders/1WO-L_AlKkx7erEG65uobF1pyUiV-4RLQ?usp=drive_link"
+                        target="_blank" class="md:col-span-7 work-offset-pull block group no-underline">
+                        <article class="work-card group cursor-pointer flex flex-col gap-3">
+                            <div class="w-full aspect-[4/3] bg-[#ccc] overflow-hidden relative">
+                                <video id="gamee-studio-video" class="img-reveal w-full h-full object-cover"
+                                    src="Assets/Video/Gamee Studio.mp4" muted loop playsinline></video>
+                            </div>
+                            <div class="flex justify-between items-baseline pt-1">
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-bold tracking-tight">Gamee Studio - Creative</h3>
+                                    <p class="text-[#9c9891] text-xs mt-1 uppercase tracking-wider">Motion Graphics · AI
+                                        ·
+                                        VFX · Editing</p>
+                                </div>
+                                <span class="font-sans font-bold text-[#c2bfb9] text-sm tabular-nums">04</span>
+                            </div>
+                        </article>
+                    </a>
+
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =============================================
+        <!-- =============================================
          CONTACT SECTION
          ============================================= -->
-    <section id="contact" class="py-36 px-8 md:px-16 w-full bg-[#111111] text-[#F2F1EC] relative overflow-hidden">
-        <div class="max-w-[1400px] mx-auto flex flex-col items-center text-center relative z-10">
+        <section id="contact" class="py-36 px-8 md:px-16 w-full bg-[#0e0c0a] text-[#F2F1EC] relative overflow-hidden">
+            <div class="max-w-[1400px] mx-auto flex flex-col items-center text-center relative z-10">
 
-            <div class="text-[10px] font-bold text-[#F2F1EC]/30 mb-10 uppercase tracking-[0.25em]">
-                (03) Let's Collaborate
+                <div class="text-[10px] font-bold text-[#F2F1EC]/30 mb-10 uppercase tracking-[0.25em]">
+                    (03) Let's Collaborate
+                </div>
+
+                <!-- Giant outline CTA -->
+                <a href="Assets/Tony CV-1.pdf" download="Tony_CV.pdf"
+                    class="font-display text-[13vw] md:text-[10vw] leading-[0.85] tracking-tight uppercase transform scale-y-[1.15] block mb-16 text-outline hover:opacity-80 transition-opacity duration-300">
+                    SAY HELLO
+                </a>
+
             </div>
+        </section>
 
-            <!-- Giant outline CTA -->
-            <a href="mailto:hello@example.com"
-                class="font-display text-[13vw] md:text-[10vw] leading-[0.85] tracking-tight uppercase transform scale-y-[1.15] block mb-16 text-outline hover:opacity-80 transition-opacity duration-300">
-                SAY HELLO
-            </a>
-
-            <!-- Social links -->
-            <nav aria-label="Social links" class="flex flex-wrap justify-center gap-10 md:gap-16 text-[11px] font-bold uppercase tracking-[0.2em]">
-                <a href="#" class="text-[#F2F1EC]/50 hover:text-[#F2F1EC] transition-colors duration-200">Behance</a>
-                <a href="#" class="text-[#F2F1EC]/50 hover:text-[#F2F1EC] transition-colors duration-200">Vimeo</a>
-                <a href="#" class="text-[#F2F1EC]/50 hover:text-[#F2F1EC] transition-colors duration-200">LinkedIn</a>
-                <a href="#" class="text-[#F2F1EC]/50 hover:text-[#F2F1EC] transition-colors duration-200">Instagram</a>
-            </nav>
-        </div>
-    </section>
-
-    <!-- =============================================
+        <!-- =============================================
          FOOTER
          ============================================= -->
-    <footer class="py-6 px-8 md:px-16 w-full flex flex-col md:flex-row justify-between items-center text-[#F2F1EC]/30 text-[10px] font-bold uppercase tracking-[0.2em] bg-[#111111] border-t border-[#F2F1EC]/10">
-        <div>© 2026 Tony Multimedia.</div>
-        <div class="mt-3 md:mt-0">Vietnam</div>
-    </footer>
+        <footer
+            class="py-6 px-8 md:px-16 w-full flex flex-col md:flex-row justify-between items-center text-[#F2F1EC]/30 text-[10px] font-bold uppercase tracking-[0.2em] bg-[#0e0c0a] border-t border-[#F2F1EC]/10">
+            <div>© 2026 Tony Multimedia.</div>
+            <div class="mt-3 md:mt-0">Vietnam</div>
+        </footer>
 
+        <!-- =============================================
+         VIDEO MODAL
+         ============================================= -->
+        <div id="video-modal" class="fixed inset-0 z-[10000] hidden flex items-center justify-center p-4 md:p-12">
+            <!-- Backdrop -->
+            <div id="modal-backdrop" class="absolute inset-0 bg-[#0e0c0a]/80 backdrop-blur-md opacity-0"></div>
+
+            <!-- Modal Content -->
+            <div id="modal-container"
+                class="relative w-full max-w-5xl aspect-video bg-[#0e0c0a] shadow-2xl rounded-sm overflow-hidden scale-95 opacity-0">
+                <video id="modal-video" class="w-full h-full object-cover" src="" controls playsinline></video>
+
+                <!-- Close Button -->
+                <button id="modal-close"
+                    class="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <!-- Info Label -->
+                <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex flex-col gap-1 pointer-events-none">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Project Archive</span>
+                    <h4 id="modal-project-title" class="text-white text-lg md:text-xl font-bold tracking-tight">Project
+                        Name</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

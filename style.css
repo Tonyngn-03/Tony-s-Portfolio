@@ -1,21 +1,136 @@
 /* ==============================================
+   Design Tokens — Warm Neutral Palette
+   ============================================== */
+:root {
+    --color-dark: #0e0c0a;
+    --color-dark-raised: #1a1714;
+    --color-brown: #341c09;
+    --color-cream: #F2F1EC;
+    --color-muted: #9c9891;
+    --color-muted-faint: #c2bfb9;
+
+    --duration-fast: 200ms;
+    --duration-base: 500ms;
+    --duration-slow: 700ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==============================================
+   Text Reveal Utilities
+   ============================================== */
+.reveal-wrapper {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: -0.2em;
+    margin-bottom: -0.4em;
+}
+
+.reveal-item {
+    display: inline-block;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    padding-top: 0.2em;
+    padding-bottom: 0.4em;
+}
+
+#hero-nav .reveal-item {
+    display: block;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.eyebrow-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: rgba(14, 12, 10, 0.05);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+}
+
+/* Status Indicator */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    color: var(--color-dark);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    position: relative;
+}
+
+.status-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: #4caf50;
+    animation: status-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes status-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* ==============================================
    Global Base
    ============================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    background-color: #F2F1EC;
-    color: #111111;
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-dark);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 /* ==============================================
-   Text selection — neutral to match light palette
+   Text selection
    ============================================== */
 ::selection {
-    background: #111111;
-    color: #F2F1EC;
+    background: var(--color-dark);
+    color: var(--color-cream);
 }
 
 /* ==============================================
@@ -23,44 +138,59 @@ body {
    ============================================== */
 .text-outline {
     color: transparent;
-    -webkit-text-stroke: 1.5px #F2F1EC;
+    -webkit-text-stroke: 1.5px var(--color-cream);
 }
 
 .text-outline:hover {
-    color: #F2F1EC;
-    -webkit-text-stroke: 0px #F2F1EC;
-    transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+    color: var(--color-cream);
+    -webkit-text-stroke: 0px var(--color-cream);
+    transition: color var(--duration-base) ease,
+        -webkit-text-stroke var(--duration-base) ease;
 }
 
 /* ==============================================
-   Work grid: controlled stagger — no giant overlaps
+   Work grid: controlled stagger
    ============================================== */
 @media (min-width: 768px) {
     .work-offset-top {
-        margin-top: 6rem; /* 96px — controlled visual stagger */
+        margin-top: 6rem;
     }
+
     .work-offset-pull {
-        margin-top: -6rem; /* pulls the second row up cleanly */
+        margin-top: -6rem;
     }
 }
 
 /* ==============================================
-   Hover: subtle image reveal (no mix-blend issues)
+   Image reveal — grayscale lift on hover
    ============================================== */
 .img-reveal {
     filter: grayscale(100%);
-    transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: filter, transform;
+    transition: filter var(--duration-slow) var(--ease-out),
+        transform var(--duration-slow) var(--ease-out);
 }
+
 .group:hover .img-reveal {
     filter: grayscale(0%);
     transform: scale(1.05);
 }
 
 /* ==============================================
-   Active feedback on interactive items
+   Active feedback
    ============================================== */
 .work-card:active {
     transform: scale(0.99);
+    transition: transform 100ms ease;
+}
+
+/* ==============================================
+   Unified hover transitions
+   ============================================== */
+a,
+button {
+    transition-duration: var(--duration-base);
+    transition-timing-function: ease;
 }
 
 /* ==============================================
@@ -69,13 +199,106 @@ body {
 ::-webkit-scrollbar {
     width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-    background: #F2F1EC;
+    background: var(--color-cream);
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #bbb;
+    background: var(--color-muted-faint);
     border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: #888;
+    background: var(--color-muted);
+}
+
+/* ==============================================
+   Break Section
+   ============================================== */
+.break-section {
+    background-color: var(--color-brown);
+    color: var(--color-cream);
+    transition: background-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out);
+}
+
+.break-section.break-inverted {
+    background-color: var(--color-cream);
+    color: var(--color-brown);
+}
+
+.break-section .break-possible,
+.break-section span,
+.break-section div {
+    transition: color var(--duration-base) var(--ease-out),
+        opacity var(--duration-base) var(--ease-out);
+}
+
+.break-possible {
+    display: inline-block;
+    padding: 0 0.15em;
+    cursor: pointer;
+}
+
+/* ==============================================
+   About Section: Premium touches
+   ============================================== */
+#about .font-serif {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+#about .group:hover img {
+    transform: scale(1.02);
+}
+
+#about .space-y-4>div {
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+#about .space-y-4>div:hover {
+    padding-left: 0.5rem;
+}
+
+#about .space-y-4>div:hover span:first-child {
+    color: var(--color-dark);
+}
+
+/* ==============================================
+   Video Modal: Premium Experience
+   ============================================== */
+#video-modal video::-webkit-media-controls-panel {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+}
+
+#modal-close:hover svg {
+    transform: rotate(90deg);
+}
+
+#modal-close svg {
+    transition: transform 0.4s var(--ease-out);
+}
+
+/* ==============================================
+   Accessibility: Reduced motion
+   ============================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .img-reveal {
+        filter: none;
+    }
+
+    .group:hover .img-reveal {
+        filter: none;
+        transform: none;
+    }
 }
