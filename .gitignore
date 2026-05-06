@@ -1,5 +1,6 @@
 .gitnexus
 node_modules/
 .DS_Store
-.agent/
-.claude/
+**/.DS_Store
+.env
+.env.local
