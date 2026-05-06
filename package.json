@@ -1,4 +1,12 @@
 {
+  "name": "tony-portfolio",
+  "version": "1.0.0",
+  "description": "Premium Video Editor & Multimedia Specialist Portfolio",
+  "main": "script.js",
+  "scripts": {
+    "dev": "npx serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "opencode-ai": "^1.14.33"
   }

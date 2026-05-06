@@ -1,11 +1,21 @@
-.gitnexus
+# Dependency directories
 node_modules/
-.DS_Store
-**/.DS_Store
-.env
-.env.local
 
-# Large video files (>50MB) - host these on Cloudinary/YouTube
-Assets/Video/ADC TVC Optimized.mp4
-Assets/Video/Short film HUE Optimized.mp4
-Assets/Video/Tony's Showreel 101.mp4
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Internal Agent files
+.agent/
+.claude/
+.gitnexus/
+AGENTS.md
+CLAUDE.md
+
+# Build/temp files
+*.log
